@@ -33,6 +33,7 @@ pip install requests pillow
 
 ### 3. Set up python script to run every 24h via task scheduler
 
+### Wallpaper example
 
 ![final_wallpaper](https://github.com/user-attachments/assets/0564b687-047c-42f6-931d-7952c1d14268)
 
