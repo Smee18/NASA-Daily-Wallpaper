@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 ##Remove mars pics folder to avoid having to store tons
 shutil.rmtree('images/mars_pics', ignore_errors=True)
 
-API_KEY = "rdUInhYvw4M9497vkPj6AO1xYTa0DGOCgy1ph4xN"
+API_KEY = "SET_YOUR_API_HERE"
 
 manifest_url = f"https://api.nasa.gov/mars-photos/api/v1/manifests/curiosity?api_key={API_KEY}"
 
@@ -158,3 +158,4 @@ try:
     print(f"Wallpaper set successfully to {abs_path}")
 except Exception as e:
     print(f"Error changing wallpaper: {e}")
+
