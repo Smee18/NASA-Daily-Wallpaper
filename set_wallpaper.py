@@ -1,14 +1,13 @@
 import requests
 import os
 import ctypes
-import sys
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 from datetime import datetime
 import shutil
 
 # --- CONFIG ---
-API_KEY = "rdUInhYvw4M9497vkPj6AO1xYTa0DGOCgy1ph4xN"
+API_KEY = "YOUR_API_KEY"
 wallpaper_size = (1920, 1080)
 padding = 20
 background_color = (0, 0, 0)
@@ -41,7 +40,6 @@ if response_APOD.status_code != 200:
 data_APOD = response_APOD.json()
 if data_APOD.get('media_type') != 'image':
     print(f"Today's APOD is not an image. It's a {data_APOD['media_type']}. URL: {data_APOD['url']}")
-    sys.exit(1)
 
 image_url = data_APOD.get('hdurl') or data_APOD.get('url')
 image_date = data_APOD.get('date')
@@ -113,8 +111,8 @@ font_small = ImageFont.truetype(font_path, 20)
 font_medium = ImageFont.truetype(font_path, 25)
 
 # --- Paths ---
-apod_path = Path(r"images/APOD/2025-08-27.jpg")
-rover_paths = [Path("images/mars_pics/sol_1605-MCZ_LEFT_22.jpg")]
+apod_path = APOD_image_path
+rover_paths = [mars_files[max_i]]
 
 # --- Wallpaper base ---
 wallpaper = Image.new("RGB", wallpaper_size, background_color)
@@ -184,9 +182,9 @@ days_since_landing = (now - landing_date).days
 info_textA = f"Perseverance Mastcam - Latest Sol: {max_sol}"
 info_textB = f"On Mars for {current_sol} sols ({days_since_landing} Earth days)"
 draw_text_box(draw, info_textA, font_medium, left_width + padding, rover_y + rover_img.height + 10,
-              wallpaper_size[0] - padding, wallpaper_size[1] - padding)
+            wallpaper_size[0] - padding, wallpaper_size[1] - padding)
 draw_text_box(draw, info_textB, font_medium, left_width + padding, rover_y + rover_img.height + 50,
-              wallpaper_size[0] - padding, wallpaper_size[1] - padding)
+            wallpaper_size[0] - padding, wallpaper_size[1] - padding)
 
 
 # --- Save ---
@@ -207,4 +205,7 @@ try:
     print(f"Wallpaper set successfully to {abs_path}")
 except Exception as e:
     print(f"Error changing wallpaper: {e}")
+
+
+
 
