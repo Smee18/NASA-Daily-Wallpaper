@@ -8,7 +8,7 @@ from datetime import datetime
 import shutil
 
 # --- CONFIG ---
-API_KEY = "YOUR_API_KEY"
+API_KEY = "rdUInhYvw4M9497vkPj6AO1xYTa0DGOCgy1ph4xN"
 wallpaper_size = (1920, 1080)
 padding = 20
 background_color = (0, 0, 0)
