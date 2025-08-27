@@ -35,5 +35,7 @@ pip install requests pillow
 
 ### Wallpaper example
 
-![final_wallpaper](https://github.com/user-attachments/assets/0564b687-047c-42f6-931d-7952c1d14268)
+![final_wallpaper](https://github.com/user-attachments/assets/c51bba59-8f67-46e5-afc7-269766a124c7)
+
+
 
