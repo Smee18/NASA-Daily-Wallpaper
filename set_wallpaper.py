@@ -8,7 +8,7 @@ from datetime import datetime
 import shutil
 
 # --- CONFIG ---
-API_KEY = "rdUInhYvw4M9497vkPj6AO1xYTa0DGOCgy1ph4xN"
+API_KEY = "YOUR_API_KEY"
 wallpaper_size = (1920, 1080)
 padding = 20
 background_color = (0, 0, 0)
@@ -207,4 +207,5 @@ try:
     print(f"Wallpaper set successfully to {abs_path}")
 except Exception as e:
     print(f"Error changing wallpaper: {e}")
+
 
