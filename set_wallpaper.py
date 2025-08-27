@@ -206,6 +206,3 @@ try:
 except Exception as e:
     print(f"Error changing wallpaper: {e}")
 
-
-
-
