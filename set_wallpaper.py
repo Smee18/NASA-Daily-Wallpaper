@@ -5,9 +5,11 @@ from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 from datetime import datetime
 import shutil
+from dotenv import load_dotenv
 
 # --- CONFIG ---
-API_KEY = "YOUR_API_KEY"
+load_dotenv() # This loads the .env file
+API_KEY = os.getenv("API_KEY")
 wallpaper_size = (1920, 1080)
 padding = 20
 background_color = (0, 0, 0)
