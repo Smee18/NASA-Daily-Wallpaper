@@ -207,3 +207,4 @@ try:
     print(f"Wallpaper set successfully to {abs_path}")
 except Exception as e:
     print(f"Error changing wallpaper: {e}")
+
