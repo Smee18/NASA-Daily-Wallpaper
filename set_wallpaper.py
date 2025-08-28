@@ -8,20 +8,15 @@ import shutil
 from dotenv import load_dotenv
 
 # --- CONFIG ---
-load_dotenv() # This loads the .env file
+load_dotenv() 
 API_KEY = os.getenv("API_KEY")
-wallpaper_size = (1920, 1080)
-padding = 20
-background_color = (0, 0, 0)
-text_color = (255, 255, 255)
-font_path = "arial.ttf"  # Ensure this exists on your system
-font_small = ImageFont.truetype(font_path, 28)
 shutil.rmtree('images/mars_pics', ignore_errors=True)
 shutil.rmtree('images/APOD', ignore_errors=True)
 
 # --- Get Manifest Data ---
 manifest_url = f"https://api.nasa.gov/mars-photos/api/v1/manifests/perseverance?api_key={API_KEY}"
 manifest_response = requests.get(manifest_url)
+
 if manifest_response.status_code != 200:
     raise Exception(f"Failed to fetch Rover info: {manifest_response.status_code}")
 
@@ -30,7 +25,6 @@ max_sol = manifest_data['max_sol']
 landing_date_str = manifest_data['landing_date']
 landing_date = datetime.strptime(landing_date_str, "%Y-%m-%d")
 print(f"Latest sol with photos: {max_sol}")
-
 
 
 # --- Fetch APOD ---
@@ -47,7 +41,7 @@ image_url = data_APOD.get('hdurl') or data_APOD.get('url')
 image_date = data_APOD.get('date')
 explanation = data_APOD.get('explanation')
 
-# Fetch Mastcam-Z images, loop backwards if none found
+#  --- Fetch Mastcam-Z images, loop backwards if none found ---
 url_MARS = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos"
 sol = max_sol
 mars_photos = []
@@ -65,7 +59,7 @@ while sol > 0 and not mars_photos:
 if not mars_photos:
     raise Exception("No Mastcam-Z images available at all.")
 
-# --- Ensure Directories ---
+# --- Ensure Directories exist, else create ---
 os.makedirs('images/APOD', exist_ok=True)
 os.makedirs('images/mars_pics', exist_ok=True)
 
@@ -103,12 +97,12 @@ for i, img_path in enumerate(mars_files):
         max_size = size_mb
 
 
-# --- Config ---
+# --- Wallpaper Config ---
 wallpaper_size = (1920, 1080)
 padding = 30
 background_color = (0, 0, 0)
 text_color = (255, 255, 255)
-font_path = "arial.ttf"  # Replace with a valid font path
+font_path = "arial.ttf" 
 font_small = ImageFont.truetype(font_path, 20)
 font_medium = ImageFont.truetype(font_path, 25)
 
@@ -137,7 +131,6 @@ text_box_y0 = apod_y + apod_img.height + 20
 text_box_x1 = left_width - padding
 text_box_y1 = wallpaper_size[1] - padding
 text_box_width = text_box_x1 - text_box_x0
-
 
 # Simple line-wrapping function
 def draw_text_box(draw, text, font, box_x0, box_y0, box_x1, box_y1, line_spacing=4):
@@ -174,7 +167,8 @@ rover_x = left_width + (right_width - rover_img.width) // 2
 rover_y = (wallpaper_size[1] - rover_img.height) // 2
 wallpaper.paste(rover_img, (rover_x - 80, rover_y))
 
-# Mastcam info
+# Mastcam info, convert sols to earth days
+
 now = datetime.now()
 sol_length_hours = 24 + 39/60 + 35/3600
 elapsed_hours = (now - landing_date).total_seconds() / 3600
