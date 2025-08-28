@@ -26,7 +26,7 @@ Automatically updates your Windows wallpaper daily to display:
 Make sure you have **Python 3.11+** installed. Then install required packages:
 
 ```bash
-pip install requests pillow
+pip install -r requirements.txt
 ```
 
 ### 2. Replace the API_KEY variable with your own
